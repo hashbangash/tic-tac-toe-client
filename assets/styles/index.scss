@@ -1,1 +1,20 @@
 @import '~bootstrap/scss/bootstrap';
+
+$body-bg-color: #000;
+$text-color: #46c016;
+
+@font-face {
+  font-family: 'VT323';
+  src: url('public/VT323/VT323-Regular.ttf') format('truetype');
+}
+
+h1 {
+  color: $text-color;
+  font-family: 'VT323', monospace;
+}
+
+
+body {
+  background-color: $body-bg-color;
+  // background-image: url('public/images/tic-tac-toe-background.jpg');
+}
