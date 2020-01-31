@@ -5,10 +5,11 @@
 // const api = require('./api')
 // const ui = require('./ui')
 
-// the event handler when the getBooks button is pressed
-const onPlaceSymbol = event => {
-  console.log('i was clicked!')
-  console.log(event, event.target)
+// event handler when a box is clicked
+const onCreateGame = event => {
+  // event has a property called target
+  // target has an attribute I created called #data-cell-index
+  console.log(event.target.getAttribute('data-cell-index'))
   // {
   //   "game": {
   //     "cell": {
@@ -18,21 +19,31 @@ const onPlaceSymbol = event => {
   //     "over": false
   //   }
   // }
-
   // api.get()
   //   .then(ui.onPlaceSymbolSuccessful)
   //   .catch(ui.onPlaceSymbolFailure)
 }
 
-/*
-{
-  book: {
-    title: "<whatever was entered in the title input >",
-    author: "<whatever was entered in the author input>"
-  }
+// event handler when a box is clicked
+const onUpdateGame = event => {
+  // event has a property called target
+  // target has an attribute I created called #data-cell-index
+  console.log(event.target.getAttribute('data-cell-index'))
+  // {
+  //   "game": {
+  //     "cell": {
+  //       "index": 0,
+  //       "value": "x"
+  //     },
+  //     "over": false
+  //   }
+  // }
+  // api.get()
+  //   .then(ui.onPlaceSymbolSuccessful)
+  //   .catch(ui.onPlaceSymbolFailure)
 }
-*/
 
 module.export = {
-  onPlaceSymbol
+  onCreateGame,
+  onUpdateGame
 }
