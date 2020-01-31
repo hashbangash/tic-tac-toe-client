@@ -2,19 +2,28 @@
 
 $body-bg-color: #000;
 $text-color: #46c016;
+$square-color: #808080;
+$border-color: #fff;
+
 
 @font-face {
   font-family: 'VT323';
   src: url('public/VT323/VT323-Regular.ttf') format('truetype');
 }
 
-h1 {
-  color: $text-color;
-  font-family: 'VT323', monospace;
-}
-
-
 body {
   background-color: $body-bg-color;
+  color: $text-color;
+  font-family: 'VT323', monospace;
   // background-image: url('public/images/tic-tac-toe-background.jpg');
+}
+
+.box {
+  align-items: center;
+  background-color: $square-color;
+  border: 1px solid $border-color;
+  color: $text-color;
+  display: flex;
+  height: 80px;
+  justify-content: center;
 }
