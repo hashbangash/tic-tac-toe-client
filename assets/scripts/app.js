@@ -16,6 +16,5 @@ $(() => {
   $('#sign-out').on('submit', authEvents.onSignOut)
 
   $('#game-board').on('click', gameEvents.onCreateGame)
-  //   $('#game-board').show() after click play
   $('#game-board').on('click', gameEvents.onUpdateGame)
 })
