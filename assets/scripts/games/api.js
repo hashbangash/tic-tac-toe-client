@@ -3,13 +3,18 @@
 // contains all AJAX calls to the API
 
 // access the API's URL via the config file (dev. & prod. URLs)
-const config = require('../config')
+const config = require('./../config')
+const store = require('./../store')
 
 const createGame = () => {
+  console.log(config.apiUrl)
   return $.ajax({
-    method: 'POST',
     url: `${config.apiUrl}/games`,
-    data: {}
+    method: 'POST',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: '{}'
   })
 }
 

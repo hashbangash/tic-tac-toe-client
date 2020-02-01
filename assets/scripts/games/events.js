@@ -2,13 +2,15 @@
 
 // const getFormFields = require('./../../../lib/get-form-fields.js')
 
-const api = require('./api')
-const ui = require('./ui')
+const api = require('./api.js')
+const ui = require('./ui.js')
+// const store = require('./../store')
 
 // event handler listens for when 'play' button is clicked
 const onCreateGame = event => {
+  console.log('in events')
   api.createGame()
-    .then(ui.onCreateGameSuccessful)
+    .then(ui.onCreateGameSuccess)
     .catch(ui.onCreateGameFailure)
 }
 
@@ -17,20 +19,16 @@ const onUpdateGame = event => {
   // event has a property called target
   // target has an attribute I created called #data-cell-index
   console.log(event.target.getAttribute('data-cell-index'))
-  const cellIndex = event.target.getAttribute('data-cell-index')
-  const player = event.target
-  // {
-  //   "game": {
-  //     "cell": {
-  //       "index": 0,
-  //       "value": "x"
-  //     },
-  //     "over": false
-  //   }
-  // }
-  api.createGame(cellIndex, player)
-    .then(ui.onCreateGameSuccessful)
-    .catch(ui.onCreateGameFailure)
+  // const cellIndex = event.target.getAttribute('data-cell-index')
+
+  // gameState array keeps track of number of valid moves made in a
+  // game
+  // let player
+  // (store.gameState.length % 0) ? player = 'x' : player = 'o'
+
+  // api.createGame(cellIndex, player)
+  //   .then(ui.onCreateGameSuccessful)
+  //   .catch(ui.onCreateGameFailure)
 }
 
 module.export = {

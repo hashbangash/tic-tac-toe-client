@@ -1,6 +1,9 @@
 'use strict'
 
-const store = {
-}
+const gameState = []
+const store = {}
 
-module.exports = store
+module.exports = {
+  gameState,
+  store
+}
