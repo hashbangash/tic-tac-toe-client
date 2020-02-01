@@ -1,14 +1,21 @@
 'use strict'
 
-// use require with a reference to bundle the file and use it in this file
-// const example = require('./example')
-
-// use require without a reference to ensure a file is bundled
-// require('./example')
+// import event handlers from events.js to create jQuery event listeners
 const gameEvents = require('./games/events')
+const authEvents = require('./auth/events')
 
 // event handlers
 $(() => {
+  $('#change-password').hide()
+  $('#sign-out').hide()
+  $('#play-button').hide()
+  $('#game-board').hide()
+  $('#sign-up').on('submit', authEvents.onSignUp)
+  $('#sign-in').on('submit', authEvents.onSignIn)
+  $('#change-password').on('submit', authEvents.onChangePassword)
+  $('#sign-out').on('submit', authEvents.onSignOut)
+
   $('#game-board').on('click', gameEvents.onCreateGame)
+  //   $('#game-board').show() after click play
   $('#game-board').on('click', gameEvents.onUpdateGame)
 })
