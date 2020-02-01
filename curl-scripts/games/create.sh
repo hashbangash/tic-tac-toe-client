@@ -1,8 +1,13 @@
 #!/bin/bash
 
-curl --include --request POST https://tic-tac-toe-wdi.herokuapp.com/ \
- --header "Content-type: application/json" \
+# I'm using the development API URL
+curl "https://tic-tac-toe-wdi.herokuapp.com/games" \
+ --include \
+ --request POST \
  --header "Authorization: Token token=${TOKEN}" \
- --data ''
+ --header "Content-type: application/json" \
+ --data '{
+
+ }'
 
 echo

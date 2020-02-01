@@ -8,7 +8,8 @@ const config = require('../config')
 const createGame = () => {
   return $.ajax({
     method: 'POST',
-    url: config.apiUrl + '/games'
+    url: `${config.apiUrl}/games`,
+    data: {}
   })
 }
 
