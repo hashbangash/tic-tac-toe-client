@@ -25,7 +25,6 @@ const onSignInSuccess = function (response) {
   $('#sign-out').show()
   $('#play-button').show()
   store.user = response.user
-  console.log('token ', response.user.token)
 }
 
 const onSignInFailure = function (response) {

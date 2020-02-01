@@ -14,7 +14,6 @@ const signUp = function (data) {
 }
 
 const signIn = function (data) {
-  console.log(data)
   // ajax takes in one option (object)
   return $.ajax({
     url: `${config.apiUrl}/sign-in`,
