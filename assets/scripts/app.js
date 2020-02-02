@@ -10,8 +10,8 @@ $(() => {
   $('#sign-out').hide()
   $('#play-button').hide()
   $('#game-board').hide()
-  $('#get-games-button').hide()
-  $('#get-games-button-2').hide()
+  $('#get-games-started-button').hide()
+  $('#get-games-finished-button').hide()
 
   // create auth event handlers
   $('#sign-up').on('submit', authEvents.onSignUp)
@@ -22,6 +22,6 @@ $(() => {
   // create game event handlers
   $('#play-button').on('click', gameEvents.onCreateGame)
   $('#game-board').on('click', gameEvents.onUpdateGame)
-  $('#get-games-button').on('click', gameEvents.onIndexOfGamesPlayed)
-  $('#get-games-button-2').on('click', gameEvents.onIndexOfAllGames)
+  $('#get-games-started-button').on('click', gameEvents.onReadIndexOfGamesStarted)
+  $('#get-games-finished-button').on('click', gameEvents.onReadIndexOfGamesFinished)
 })

@@ -47,29 +47,28 @@ const onUpdateGame = event => {
     }
   }
 
-  console.log('store after updateGame', store)
   api.updateGame()
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
 }
 
-// event handler listens for when game stats button is clicked
-const onIndexOfGamesPlayed = () => {
-  api.indexOfGamesPlayed()
-    .then(ui.onIndexOfGamesPlayedSuccess)
-    .catch(ui.onIndexOfGamesPlayedFailure)
+// event handler listens for when get # of games started button clicked
+const onReadIndexOfGamesStarted = () => {
+  api.readIndexOfGamesStarted()
+    .then(ui.onReadIndexOfGamesStartedSuccess)
+    .catch(ui.onReadIndexOfGamesStartedFailure)
 }
 
-// event handler listens for when game stats button 2 is clicked
-const onIndexOfAllGames = () => {
-  api.indexOfAllGames()
-    .then(ui.onIndexOfAllGamesSuccess)
-    .catch(ui.onIndexOfAllGamesFailure)
+// event handler listens for when get # of games finished button clicked
+const onReadIndexOfGamesFinished = () => {
+  api.readIndexOfGamesFinished()
+    .then(ui.onReadIndexOfGamesFinishedSuccess)
+    .catch(ui.onReadIndexOfGamesFinishedFailure)
 }
 
 module.exports = {
   onCreateGame,
   onUpdateGame,
-  onIndexOfGamesPlayed,
-  onIndexOfAllGames
+  onReadIndexOfGamesStarted,
+  onReadIndexOfGamesFinished
 }
