@@ -12,10 +12,8 @@ const store = require('./store')
 // returns string value 'x' or 'o' if game is not over
 
 const updateGameState = function () {
-  console.log('store before updateGameState', store)
   // get game data from store
   const cells = store.game.cells
-  const over = store.game.over
 
   // calculate how many moves have been made
   let numberOfMovesMade = 0
@@ -31,14 +29,8 @@ const updateGameState = function () {
     store.game.over = true
   }
 
-  // if the game is over, return null
-  if (over === true) {
-    return null
-  }
-
   const player = (numberOfMovesMade % 2) ? 'o' : 'x'
   store.player = player
-  console.log('store after updateGameState', store)
 }
 
 const checkForLegalMove = function () {
