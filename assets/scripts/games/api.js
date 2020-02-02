@@ -28,7 +28,31 @@ const updateGame = () => {
   })
 }
 
+const indexOfGamesPlayed = () => {
+  return $.ajax({
+    url: `${config.apiUrl}/games?over=true`,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: ''
+  })
+}
+
+const indexOfAllGames = () => {
+  return $.ajax({
+    url: `${config.apiUrl}/games`,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: ''
+  })
+}
+
 module.exports = {
   createGame,
-  updateGame
+  updateGame,
+  indexOfGamesPlayed,
+  indexOfAllGames
 }

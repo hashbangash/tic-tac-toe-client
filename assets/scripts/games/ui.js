@@ -5,9 +5,14 @@ const functions = require('./../functions')
 // contains the jQuery to update the webpage
 
 const onCreateGameSuccess = function (response) {
-  $('#message').text(`successfully clicked play!`)
+  $('#message').text(`new game!`)
   $('#game-board').show()
   store.game = response.game
+  // clear board
+  for (let i = 0; i < 9; i++) {
+    const box = `[data-cell-index=${i}]`
+    $(`${box}`).text('')
+  }
   console.log('store after onCreateGameSuccess: ', store)
 }
 const onCreateGameFailure = function (response) {
@@ -16,7 +21,7 @@ const onCreateGameFailure = function (response) {
 }
 
 const onUpdateGameSuccess = response => {
-  $('#message').text('added move')
+  $('#message').text(`added move for ${store.player}`)
   $('#message').addClass('successful')
   const box = `[data-cell-index=${store.move.game.cell.index}]`
   $(`${box}`).text(store.move.game.cell.value)
@@ -25,10 +30,14 @@ const onUpdateGameSuccess = response => {
   if (store.numberOfMovesMade > 4) {
     functions.checkForWin()
   }
-
+  functions.updateGameState()
   if (store.game.over) {
-    $('#message').text('game over. click `play` to play again.')
-    return
+    if (store.winner !== undefined) {
+      $('#message').text(`${store.winner} wins! click 'play' to play again.`)
+    } else {
+      $('#message').text('game tied. click `play` to play again.')
+      return
+    }
   }
   console.log('store after onUpdateGameSuccess: ', store)
 }
@@ -38,55 +47,35 @@ const onUpdateGameFailure = () => {
   $('#message').addClass('failure')
 }
 
-// const onGetBooksSuccessful = responseData => {
-//   console.log(responseData.books)
-//   let allBooksHtml = ''
-//   responseData.books.forEach(book => {
-//     const bookHtml = `
-//       <h3>${book.title}</h3>
-//       <h4>by ${book.author}</h4>
-//       <h5>id: ${book.id}</h5>
-//     `
-//
-//     allBooksHtml += bookHtml
-//   })
-//   $('#book-display').html(allBooksHtml)
-// }
-//
-// const onGetBooksFailure = () => {
-//   $('#message').text('failed to get books😭')
-//   $('#message').addClass('failure')
-// }
-//
-// const onGetBookSuccessful = responseData => {
-//   const book = responseData.book
-//   const bookHtml = `
-//   <h3>${book.title}</h3>
-//   <h4>by ${book.author}</h4>
-//   <h5>id: ${book.id}</h5>
-//   `
-//   $('#book-display').html(bookHtml)
-// }
-//
-// const onGetBookFailure = () => {
-//   $('#message').text('failed to get book😭')
-//   $('#message').addClass('failure')
-// }
-//
-// const onDeleteBookSuccessful = responseData => {
-//   $('#message').text('deleted book')
-//   $('#message').addClass('successful')
-// }
-//
-// const onDeleteBookFailure = () => {
-//   $('#message').text('failed to delete book😭')
-//   $('#message').addClass('failure')
-// }
-//
+const onIndexOfGamesPlayedSuccess = response => {
+  store.gamesFinished = response
+  $('#get-games-message').text(`${store.gamesFinished.games.length} games finished`)
+  console.log('store after onIndexOfGamesPlayedSuccess: ', store)
+}
+
+const onIndexOfGamesPlayedFailure = () => {
+  $('#get-games-message').text('failed to get books😭')
+  $('#get-games-message').addClass('failure')
+}
+
+const onIndexOfAllGamesSuccess = response => {
+  store.gamesStarted = response
+  $('#get-games-message-2').text(`${store.gamesStarted.games.length} games started`)
+  console.log('store after onIndexOfAllGamesSuccess: ', store)
+}
+
+const onIndexOfAllGamesFailure = () => {
+  $('#get-games-message-2').text('failed to get books😭')
+  $('#message').addClass('failure')
+}
 
 module.exports = {
   onCreateGameSuccess,
   onCreateGameFailure,
   onUpdateGameSuccess,
-  onUpdateGameFailure
+  onUpdateGameFailure,
+  onIndexOfGamesPlayedSuccess,
+  onIndexOfGamesPlayedFailure,
+  onIndexOfAllGamesSuccess,
+  onIndexOfAllGamesFailure
 }

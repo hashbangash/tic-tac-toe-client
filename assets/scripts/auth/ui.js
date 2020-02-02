@@ -27,6 +27,8 @@ const onSignInSuccess = function (response) {
   $('#change-password').show()
   $('#sign-out').show()
   $('#play-button').show()
+  $('#get-games-button').show()
+  $('#get-games-button-2').show()
   store.user = response.user
 }
 
@@ -56,6 +58,10 @@ const onSignOutSuccess = function (response) {
   $('#sign-up').show()
   $('#play-button').hide()
   $('#game-board').hide()
+  $('#get-games-button').hide()
+  $('#get-games-message').hide()
+  $('#get-games-button-2').hide()
+  $('#get-games-message-2').hide()
   // set the locally stored user data to null
   store.user = null
 }

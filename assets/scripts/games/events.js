@@ -18,7 +18,8 @@ const onUpdateGame = event => {
 
   if (store.game.over) {
     $('#message').text('game over. click `play` to play again.')
-    return
+    store.cellIndex = null
+    store.player = null
   }
 
   // event has a property called target
@@ -32,6 +33,10 @@ const onUpdateGame = event => {
     return
   }
 
+  if (!store.game.over) {
+    store.numberOfMovesMade++
+  }
+
   store.move = {
     'game': {
       'cell': {
@@ -42,15 +47,29 @@ const onUpdateGame = event => {
     }
   }
 
-  store.numberOfMovesMade++
-
   console.log('store after updateGame', store)
   api.updateGame()
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
 }
 
+// event handler listens for when game stats button is clicked
+const onIndexOfGamesPlayed = () => {
+  api.indexOfGamesPlayed()
+    .then(ui.onIndexOfGamesPlayedSuccess)
+    .catch(ui.onIndexOfGamesPlayedFailure)
+}
+
+// event handler listens for when game stats button 2 is clicked
+const onIndexOfAllGames = () => {
+  api.indexOfAllGames()
+    .then(ui.onIndexOfAllGamesSuccess)
+    .catch(ui.onIndexOfAllGamesFailure)
+}
+
 module.exports = {
   onCreateGame,
-  onUpdateGame
+  onUpdateGame,
+  onIndexOfGamesPlayed,
+  onIndexOfAllGames
 }
