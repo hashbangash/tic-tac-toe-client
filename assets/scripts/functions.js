@@ -29,9 +29,9 @@ const getPlayer = function () {
   if (over === true) {
     return null
   }
-
+  console.log('num moves made ', numberOfMovesMade)
   // return the correct player as a string
-  return (numberOfMovesMade % 0) ? 'o' : 'x'
+  return (numberOfMovesMade % 2) ? 'o' : 'x'
 }
 
 module.exports = {

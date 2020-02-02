@@ -7,22 +7,27 @@ const store = require('./../store')
 const onCreateGameSuccess = function (response) {
   $('#message').text(`successfully clicked play!`)
   $('#game-board').show()
-  console.log('response after game created: ', response)
   store.game = response.game
+  console.log('response after game created: ', response)
   console.log('store after game created: ', store)
 }
 const onCreateGameFailure = function (response) {
   $('#message').text(`try again.`)
+  $('#message').addClass('failure')
 }
 
-const onUpdateGameSuccess = responseData => {
+const onUpdateGameSuccess = response => {
   $('#message').text('added move')
   $('#message').addClass('successful')
-  $(`[data-cell-index='${store.move.index}']`).text(store.move.player)
+  const box = `[data-cell-index=${store.move.game.cell.index}]`
+  $(`${box}`).text(store.move.game.cell.value)
+  store.game = response.game
+  console.log('response after game created: ', response)
+  console.log('store after game created: ', store)
 }
 
 const onUpdateGameFailure = () => {
-  $('#message').text('failed to update book😭')
+  $('#message').text('failed to update game')
   $('#message').addClass('failure')
 }
 
