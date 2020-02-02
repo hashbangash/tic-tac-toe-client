@@ -8,8 +8,7 @@ const onCreateGameSuccess = function (response) {
   $('#message').text(`successfully clicked play!`)
   $('#game-board').show()
   store.game = response.game
-  console.log('response after game created: ', response)
-  console.log('store after game created: ', store)
+  console.log('store after onCreateGameSuccess: ', store)
 }
 const onCreateGameFailure = function (response) {
   $('#message').text(`try again.`)
@@ -22,8 +21,7 @@ const onUpdateGameSuccess = response => {
   const box = `[data-cell-index=${store.move.game.cell.index}]`
   $(`${box}`).text(store.move.game.cell.value)
   store.game = response.game
-  console.log('response after game created: ', response)
-  console.log('store after game created: ', store)
+  console.log('store after onUpdateGameSuccess: ', store)
 }
 
 const onUpdateGameFailure = () => {

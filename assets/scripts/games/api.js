@@ -7,7 +7,6 @@ const config = require('./../config')
 const store = require('./../store')
 
 const createGame = () => {
-  console.log(config.apiUrl)
   return $.ajax({
     url: `${config.apiUrl}/games`,
     method: 'POST',
@@ -19,9 +18,6 @@ const createGame = () => {
 }
 
 const updateGame = () => {
-  console.log(`${config.apiUrl}/games/${store.game.id}`)
-  console.log(`Token token=${store.user.token}`)
-  console.log(store.move)
   return $.ajax({
     url: `${config.apiUrl}/games/${store.game.id}`,
     method: 'PATCH',
