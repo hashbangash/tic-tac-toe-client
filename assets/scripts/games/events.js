@@ -14,28 +14,35 @@ const onCreateGame = () => {
 
 // event handler listens for when a tic tac toe box is clicked
 const onUpdateGame = event => {
+  functions.updateGameState()
+
+  if (store.game.over) {
+    $('#message').text('game over. click `play` to play again.')
+    return
+  }
+
   // event has a property called target
   // target has a HTML data-* attribute I created called #data-cell-index
-  console.log(event.target.getAttribute('data-cell-index'))
   const cellIndexStr = event.target.getAttribute('data-cell-index')
-  const cellIndex = parseInt(cellIndexStr, 10)
+  store.cellIndex = parseInt(cellIndexStr, 10)
 
-  console.log('box clicked, user: ', store.user)
-  console.log('box clicked, game: ', store.game)
-  const player = functions.getPlayer()
-
-  console.log('cell index and player ', cellIndex, player)
+  const legalMove = functions.checkForLegalMove()
+  if (!legalMove) {
+    $('#message').text('illegal move. try again.')
+    return
+  }
 
   store.move = {
     'game': {
       'cell': {
-        'index': cellIndex,
-        'value': player
+        'index': store.cellIndex,
+        'value': store.player
       },
       'over': store.game.over
     }
   }
-  console.log('store.move ', store.move)
+  store.numberOfMovesMade++
+  console.log('store after updateGame', store)
   api.updateGame()
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)

@@ -1,7 +1,6 @@
 'use strict'
 
 const store = require('./store')
-
 // getPlayer: function to get the player who's turn it is
 
 // uses data from store.js:
@@ -12,7 +11,8 @@ const store = require('./store')
 // returns null if game is over
 // returns string value 'x' or 'o' if game is not over
 
-const getPlayer = function () {
+const updateGameState = function () {
+  console.log('store before updateGameState', store)
   // get game data from store
   const cells = store.game.cells
   const over = store.game.over
@@ -24,16 +24,32 @@ const getPlayer = function () {
       numberOfMovesMade++
     }
   }
+  store.numberOfMovesMade = numberOfMovesMade
+
+  // logic that checks for a tie
+  if (numberOfMovesMade === 9) {
+    store.game.over = true
+  }
 
   // if the game is over, return null
   if (over === true) {
     return null
   }
-  console.log('num moves made ', numberOfMovesMade)
-  // return the correct player as a string
-  return (numberOfMovesMade % 2) ? 'o' : 'x'
+
+  const player = (numberOfMovesMade % 2) ? 'o' : 'x'
+  store.player = player
+  console.log('store after updateGameState', store)
 }
 
+const checkForLegalMove = function () {
+  return store.game.cells[store.cellIndex] === ''
+}
+
+// const checkForWin = function () {
+//   store.game.over = false
+// }
+
 module.exports = {
-  getPlayer
+  updateGameState,
+  checkForLegalMove
 }
