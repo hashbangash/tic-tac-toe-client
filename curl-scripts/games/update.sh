@@ -1,19 +1,19 @@
 #!/bin/bash
+# TOKEN='' INDEX=0 PLAYER='x' GAME_STATE=false ID= sh curl-scripts/games/update.sh
 
-curl --include --request PATCH https://tic-tac-toe-wdi.herokuapp.com/ \
+curl "https://tic-tac-toe-wdi.herokuapp.com/games/${ID}" \
+ --include \
+ --request PATCH \
  --header "Content-type: application/json" \
  --header "Authorization: Token token=${TOKEN}" \
- --data `{
-  "game": {
-    "id": 3,
-    "cells": ["","","","","","","","",""],
-    "over": false,
-    "player_x": {
-      "id": `${ID}`,
-      "email": `${EMAIL}`
-    },
-    "player_o": null
-  }
-}`
+ --data '{
+   "game": {
+     "cell": {
+       "index": "'"${INDEX}"'",
+       "value": "'"${PLAYER}"'"
+     },
+     "over": "'"${GAME_STATE}"'"
+   }
+ }'
 
 echo

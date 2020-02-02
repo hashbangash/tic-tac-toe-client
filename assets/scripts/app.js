@@ -1,20 +1,23 @@
 'use strict'
 
-// import event handlers from events.js to create jQuery event listeners
+// import event handlers
 const gameEvents = require('./games/events')
 const authEvents = require('./auth/events')
 
-// event handlers
 $(() => {
+  // initial page display
   $('#change-password').hide()
   $('#sign-out').hide()
   $('#play-button').hide()
   $('#game-board').hide()
+
+  // create auth event handlers
   $('#sign-up').on('submit', authEvents.onSignUp)
   $('#sign-in').on('submit', authEvents.onSignIn)
   $('#change-password').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
 
-  $('#game-board').on('click', gameEvents.onCreateGame)
+  // create game event handlers
+  $('#play-button').on('click', gameEvents.onCreateGame)
   $('#game-board').on('click', gameEvents.onUpdateGame)
 })

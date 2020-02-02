@@ -1,17 +1,36 @@
 'use strict'
 
+const store = require('./../store')
+
 // contains the jQuery to update the webpage
 
-const onCreateGameSuccessful = responseData => {
+const onCreateGameSuccess = function (response) {
+  $('#message').text(`successfully clicked play!`)
   $('#game-board').show()
-  $('#message').text('created game')
-  $('#message').addClass('successful')
+  store.game = response.game
+  console.log('response after game created: ', response)
+  console.log('store after game created: ', store)
 }
-
-const onCreateGameFailure = () => {
-  $('#message').text('failed to create game😭')
+const onCreateGameFailure = function (response) {
+  $('#message').text(`try again.`)
   $('#message').addClass('failure')
 }
+
+const onUpdateGameSuccess = response => {
+  $('#message').text('added move')
+  $('#message').addClass('successful')
+  const box = `[data-cell-index=${store.move.game.cell.index}]`
+  $(`${box}`).text(store.move.game.cell.value)
+  store.game = response.game
+  console.log('response after game created: ', response)
+  console.log('store after game created: ', store)
+}
+
+const onUpdateGameFailure = () => {
+  $('#message').text('failed to update game')
+  $('#message').addClass('failure')
+}
+
 // const onGetBooksSuccessful = responseData => {
 //   console.log(responseData.books)
 //   let allBooksHtml = ''
@@ -57,17 +76,10 @@ const onCreateGameFailure = () => {
 //   $('#message').addClass('failure')
 // }
 //
-// const onUpdateBookSuccessful = responseData => {
-//   $('#message').text('updated book')
-//   $('#message').addClass('successful')
-// }
-//
-// const onUpdateBookFailure = () => {
-//   $('#message').text('failed to update book😭')
-//   $('#message').addClass('failure')
-// }
 
 module.exports = {
-  onCreateGameSuccessful,
-  onCreateGameFailure
+  onCreateGameSuccess,
+  onCreateGameFailure,
+  onUpdateGameSuccess,
+  onUpdateGameFailure
 }
