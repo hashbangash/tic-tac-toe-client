@@ -5,6 +5,7 @@ const store = require('./../store')
 const onSignUpSuccess = function (response) {
   $('#message').text(`${response.user.email} successfully signed up!`)
   $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
   $('#message').removeClass()
   $('#message').addClass('success-message')
 }
@@ -12,12 +13,14 @@ const onSignUpSuccess = function (response) {
 const onSignUpFailure = function (response) {
   $('#message').text(`sign up failed. try again.`)
   $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
   $('#message').removeClass()
   $('#message').addClass('failure-message')
 }
 
 const onSignInSuccess = function (response) {
   $('#message').text(`${response.user.email} successfully signed in!`)
+  $('#sign-up').trigger('reset')
   $('#sign-in').trigger('reset')
   $('#sign-in').hide()
   $('#sign-up').hide()
@@ -30,6 +33,7 @@ const onSignInSuccess = function (response) {
 
 const onSignInFailure = function (response) {
   $('#message').text(`sign in failed. try again.`)
+  $('#sign-up').trigger('reset')
   $('#sign-in').trigger('reset')
 }
 
@@ -46,6 +50,7 @@ const onChangePasswordFailure = function (response) {
 const onSignOutSuccess = function (response) {
   $('#message').text(`successfully signed out!`)
   $('#sign-out').trigger('reset')
+  $('#change-password').trigger('reset')
   $('#change-password').hide()
   $('#sign-out').hide()
   $('#sign-in').show()
@@ -59,6 +64,7 @@ const onSignOutSuccess = function (response) {
 const onSignOutFailure = function (response) {
   $('#message').text(`sign out failed. try again.`)
   $('#sign-out').trigger('reset')
+  $('#sign-in').trigger('reset')
 }
 
 module.exports = {
