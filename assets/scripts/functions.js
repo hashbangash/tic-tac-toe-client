@@ -45,11 +45,50 @@ const checkForLegalMove = function () {
   return store.game.cells[store.cellIndex] === ''
 }
 
-// const checkForWin = function () {
-//   store.game.over = false
-// }
+const checkForWin = function () {
+  const xMoves = []
+  const oMoves = []
+  for (let i = 0; i < store.game.cells.length; i++) {
+    if (store.game.cells[i] === 'x') {
+      xMoves.push(i)
+    } else if (store.game.cells[i] === 'o') {
+      oMoves.push(i)
+    }
+  }
+  let winner
+  let moves = xMoves
+  let player = 'x'
+  for (let j = 0; j < 2; j++) {
+    if (j === 1) {
+      moves = oMoves
+      player = 'o'
+    }
+    if (moves.includes(0) && moves.includes(3) && moves.includes(6)) {
+      winner = player
+    } else if (moves.includes(1) && moves.includes(4) && moves.includes(7)) {
+      winner = player
+    } else if (moves.includes(2) && moves.includes(5) && moves.includes(8)) {
+      winner = player
+    } else if (moves.includes(0) && moves.includes(1) && moves.includes(2)) {
+      winner = player
+    } else if (moves.includes(3) && moves.includes(4) && moves.includes(5)) {
+      winner = player
+    } else if (moves.includes(6) && moves.includes(7) && moves.includes(8)) {
+      winner = player
+    } else if (moves.includes(0) && moves.includes(4) && moves.includes(8)) {
+      winner = player
+    } else if (moves.includes(2) && moves.includes(4) && moves.includes(6)) {
+      winner = player
+    }
+  }
+  if (winner !== undefined) {
+    store.game.over = true
+    store.winner = winner
+  }
+}
 
 module.exports = {
   updateGameState,
-  checkForLegalMove
+  checkForLegalMove,
+  checkForWin
 }

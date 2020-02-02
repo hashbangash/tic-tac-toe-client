@@ -41,7 +41,9 @@ const onUpdateGame = event => {
       'over': store.game.over
     }
   }
+
   store.numberOfMovesMade++
+
   console.log('store after updateGame', store)
   api.updateGame()
     .then(ui.onUpdateGameSuccess)
