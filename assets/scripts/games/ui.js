@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('./../store')
-
+const functions = require('./../functions')
 // contains the jQuery to update the webpage
 
 const onCreateGameSuccess = function (response) {
@@ -21,6 +21,15 @@ const onUpdateGameSuccess = response => {
   const box = `[data-cell-index=${store.move.game.cell.index}]`
   $(`${box}`).text(store.move.game.cell.value)
   store.game = response.game
+  // logic that checks for a win
+  if (store.numberOfMovesMade > 4) {
+    functions.checkForWin()
+  }
+
+  if (store.game.over) {
+    $('#message').text('game over. click `play` to play again.')
+    return
+  }
   console.log('store after onUpdateGameSuccess: ', store)
 }
 
