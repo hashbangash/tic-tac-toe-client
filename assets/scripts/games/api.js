@@ -28,9 +28,9 @@ const updateGame = () => {
   })
 }
 
-const indexOfGamesPlayed = () => {
+const readIndexOfGamesStarted = () => {
   return $.ajax({
-    url: `${config.apiUrl}/games?over=true`,
+    url: `${config.apiUrl}/games`,
     method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`
@@ -39,9 +39,9 @@ const indexOfGamesPlayed = () => {
   })
 }
 
-const indexOfAllGames = () => {
+const readIndexOfGamesFinished = () => {
   return $.ajax({
-    url: `${config.apiUrl}/games`,
+    url: `${config.apiUrl}/games?over=true`,
     method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`
@@ -53,6 +53,6 @@ const indexOfAllGames = () => {
 module.exports = {
   createGame,
   updateGame,
-  indexOfGamesPlayed,
-  indexOfAllGames
+  readIndexOfGamesStarted,
+  readIndexOfGamesFinished
 }

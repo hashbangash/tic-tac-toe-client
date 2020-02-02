@@ -2,71 +2,81 @@
 
 const store = require('./../store')
 const functions = require('./../functions')
-// contains the jQuery to update the webpage
+
+// contains most all of the jQuery to update the webpage
 
 const onCreateGameSuccess = function (response) {
-  $('#message').text(`new game!`)
-  $('#game-board').show()
+  // save the new game state after AJAX call returned a response
   store.game = response.game
-  // clear board
+  $('#message').text(`new game!`)
+
+  // show board if this is first new game this session
+  $('#game-board').show()
+
+  // clear board if this is not the first new game this session
   for (let i = 0; i < 9; i++) {
     const box = `[data-cell-index=${i}]`
     $(`${box}`).text('')
   }
-  console.log('store after onCreateGameSuccess: ', store)
 }
+
 const onCreateGameFailure = function (response) {
   $('#message').text(`try again.`)
-  $('#message').addClass('failure')
 }
 
 const onUpdateGameSuccess = response => {
+  // save the new game state after AJAX call returned a response
+  store.game = response.game
   $('#message').text(`added move for ${store.player}`)
-  $('#message').addClass('successful')
+
+  // update the board with a move
   const box = `[data-cell-index=${store.move.game.cell.index}]`
   $(`${box}`).text(store.move.game.cell.value)
-  store.game = response.game
-  // logic that checks for a win
+
+  // perform a state update of the game
+  functions.updateGameState()
+
+  // checks for a win based on the new move
   if (store.numberOfMovesMade > 4) {
     functions.checkForWin()
+    functions.checkForTie()
   }
+
+  // perform a state update of the game
   functions.updateGameState()
+
+  // game-end messages to user for win and tie
   if (store.game.over) {
-    if (store.winner !== undefined) {
-      $('#message').text(`${store.winner} wins! click 'play' to play again.`)
-    } else {
+    if (store.winner === undefined || store.winner === null) {
       $('#message').text('game tied. click `play` to play again.')
-      return
+    } else {
+      $('#message').text(`${store.winner} wins! click 'play' to play again.`)
+      // reset winner for next game
+      store.winner = null
     }
   }
-  console.log('store after onUpdateGameSuccess: ', store)
 }
 
 const onUpdateGameFailure = () => {
   $('#message').text('failed to update game')
-  $('#message').addClass('failure')
 }
 
-const onIndexOfGamesPlayedSuccess = response => {
-  store.gamesFinished = response
-  $('#get-games-message').text(`${store.gamesFinished.games.length} games finished`)
-  console.log('store after onIndexOfGamesPlayedSuccess: ', store)
-}
-
-const onIndexOfGamesPlayedFailure = () => {
-  $('#get-games-message').text('failed to get books😭')
-  $('#get-games-message').addClass('failure')
-}
-
-const onIndexOfAllGamesSuccess = response => {
+const onReadIndexOfGamesStartedSuccess = response => {
   store.gamesStarted = response
-  $('#get-games-message-2').text(`${store.gamesStarted.games.length} games started`)
-  console.log('store after onIndexOfAllGamesSuccess: ', store)
+  $('#message').text(`${store.gamesStarted.games.length} game(s) started`)
 }
 
-const onIndexOfAllGamesFailure = () => {
-  $('#get-games-message-2').text('failed to get books😭')
-  $('#message').addClass('failure')
+const onReadIndexOfGamesStartedFailure = () => {
+  $('#message').text('failed to get games started')
+}
+
+const onReadIndexOfGamesFinishedSuccess = response => {
+  store.gamesFinished = response
+  $('#message').text(`${store.gamesFinished.games.length} game(s) finished`)
+}
+
+const onReadIndexOfGamesFinishedFailure = () => {
+  $('#message').text('failed to get games finished')
 }
 
 module.exports = {
@@ -74,8 +84,8 @@ module.exports = {
   onCreateGameFailure,
   onUpdateGameSuccess,
   onUpdateGameFailure,
-  onIndexOfGamesPlayedSuccess,
-  onIndexOfGamesPlayedFailure,
-  onIndexOfAllGamesSuccess,
-  onIndexOfAllGamesFailure
+  onReadIndexOfGamesStartedSuccess,
+  onReadIndexOfGamesStartedFailure,
+  onReadIndexOfGamesFinishedSuccess,
+  onReadIndexOfGamesFinishedFailure
 }
