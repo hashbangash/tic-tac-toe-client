@@ -2,6 +2,7 @@
 
 const store = require('./store')
 
+// number of moves made in the current game
 const calculateNumMovesMade = function () {
   // get game array from store
   const cells = store.game.cells
@@ -16,8 +17,8 @@ const calculateNumMovesMade = function () {
   store.numberOfMovesMade = numberOfMovesMade
 }
 
+// determine who gets current/next move
 const getPlayer = function () {
-  // determine who gets next move
   const player = (store.numberOfMovesMade % 2) ? 'o' : 'x'
   store.player = player
 }
@@ -25,12 +26,14 @@ const getPlayer = function () {
 // ensures game board box is open for a valid move.
 // returns true if move is legal, false otherwise.
 const checkForLegalMove = function () {
-  return store.game.cells[store.cellIndex] === ''
+  // if the game isn't over and box clicked is empty
+  return !store.game.over && store.game.cells[store.cellIndex] === ''
 }
 
 // uses the indeces of player's moves to determine if there's a win.
 // this method doesn't return anything. it just updates the store.
 const checkForWin = function () {
+  store.winner = null
   // create arrays for x's moves and o's moves
   const xMoves = []
   const oMoves = []
@@ -41,9 +44,8 @@ const checkForWin = function () {
       oMoves.push(i)
     }
   }
-
   // use the arrays already created to see if win conditions exist
-  let winner
+  let winner = null
   let moves = xMoves
   let player = 'x'
   for (let j = 0; j < 2; j++) {
@@ -72,14 +74,15 @@ const checkForWin = function () {
   }
 
   // if winner was found, update the state
-  if (winner !== undefined) {
-    store.game.over = true
+  if (winner !== null) {
     store.winner = winner
+    store.game.over = true
   }
 }
 
+// this checks for end of game. Use store.winner to check if it's
+// really a tie or if a player won.
 const checkForTie = function () {
-  // logic that checks for a tie
   if (store.numberOfMovesMade === 9) {
     store.game.over = true
   }
