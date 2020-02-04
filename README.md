@@ -9,7 +9,7 @@ I developed my wireframes and user stories and referenced the GA schedule and re
 
 #### Wireframes
 
-![Original wireframes](https://imgur.com/a/3bOCif1)
+![Original wireframes](https://i.imgur.com/uguLEY0.png)
 
 #### User Stories
 
