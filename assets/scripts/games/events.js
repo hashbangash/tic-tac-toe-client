@@ -14,14 +14,15 @@ const onCreateGame = () => {
 
 // event handler listens for when a tic tac toe box is clicked
 const onUpdateGame = event => {
-  functions.updateGameState()
-
   if (store.game.over) {
     $('#message').text('game over. click `play` to play again.')
     store.cellIndex = null
     store.player = null
+    return
   }
 
+  functions.calculateNumMovesMade()
+  functions.getPlayer()
   // event has a property called target
   // target has a HTML data-* attribute I created called #data-cell-index
   const cellIndexStr = event.target.getAttribute('data-cell-index')
@@ -35,6 +36,12 @@ const onUpdateGame = event => {
 
   if (!store.game.over) {
     store.numberOfMovesMade++
+  }
+
+  // checks for a win based on the new move
+  if (store.numberOfMovesMade > 4) {
+    functions.checkForWin()
+    functions.checkForTie()
   }
 
   store.move = {
@@ -54,6 +61,7 @@ const onUpdateGame = event => {
 
 // event handler listens for when get # of games started button clicked
 const onReadIndexOfGamesStarted = () => {
+  console.log(store)
   api.readIndexOfGamesStarted()
     .then(ui.onReadIndexOfGamesStartedSuccess)
     .catch(ui.onReadIndexOfGamesStartedFailure)
@@ -61,6 +69,7 @@ const onReadIndexOfGamesStarted = () => {
 
 // event handler listens for when get # of games finished button clicked
 const onReadIndexOfGamesFinished = () => {
+  console.log(store)
   api.readIndexOfGamesFinished()
     .then(ui.onReadIndexOfGamesFinishedSuccess)
     .catch(ui.onReadIndexOfGamesFinishedFailure)

@@ -2,10 +2,7 @@
 
 const store = require('./store')
 
-// uses the store to update the game state and add data.
-// uses the game data to calculate the next player, if the
-// game is over, and number of moves made so far.
-const updateGameState = function () {
+const calculateNumMovesMade = function () {
   // get game array from store
   const cells = store.game.cells
 
@@ -17,9 +14,11 @@ const updateGameState = function () {
     }
   }
   store.numberOfMovesMade = numberOfMovesMade
+}
 
+const getPlayer = function () {
   // determine who gets next move
-  const player = (numberOfMovesMade % 2) ? 'o' : 'x'
+  const player = (store.numberOfMovesMade % 2) ? 'o' : 'x'
   store.player = player
 }
 
@@ -87,7 +86,8 @@ const checkForTie = function () {
 }
 
 module.exports = {
-  updateGameState,
+  calculateNumMovesMade,
+  getPlayer,
   checkForLegalMove,
   checkForWin,
   checkForTie
