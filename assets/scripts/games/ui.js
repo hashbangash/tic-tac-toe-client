@@ -25,6 +25,7 @@ const onCreateGameFailure = function (response) {
 }
 
 const onUpdateGameSuccess = response => {
+  console.log(store)
   // save the new game state after AJAX call returned a response
   store.game = response.game
   $('#message').text(`added move for ${store.player}`)
@@ -33,17 +34,11 @@ const onUpdateGameSuccess = response => {
   const box = `[data-cell-index=${store.move.game.cell.index}]`
   $(`${box}`).text(store.move.game.cell.value)
 
-  // perform a state update of the game
-  functions.updateGameState()
-
   // checks for a win based on the new move
   if (store.numberOfMovesMade > 4) {
     functions.checkForWin()
     functions.checkForTie()
   }
-
-  // perform a state update of the game
-  functions.updateGameState()
 
   // game-end messages to user for win and tie
   if (store.game.over) {
