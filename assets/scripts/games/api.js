@@ -1,10 +1,10 @@
 'use strict'
 
-// contains all AJAX calls to the API
-
 // access the API's URL via the config file (dev. & prod. URLs)
 const config = require('./../config')
 const store = require('./../store')
+
+// contains all AJAX calls to the API
 
 const createGame = () => {
   return $.ajax({

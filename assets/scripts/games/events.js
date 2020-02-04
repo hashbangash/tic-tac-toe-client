@@ -14,54 +14,54 @@ const onCreateGame = () => {
 
 // event handler listens for when a tic tac toe box is clicked
 const onUpdateGame = event => {
-  if (store.game.over) {
-    $('#message').text('game over. click `play` to play again.')
-    store.cellIndex = null
-    store.player = null
-    return
-  }
-
-  functions.calculateNumMovesMade()
-  functions.getPlayer()
   // event has a property called target
   // target has a HTML data-* attribute I created called #data-cell-index
   const cellIndexStr = event.target.getAttribute('data-cell-index')
   store.cellIndex = parseInt(cellIndexStr, 10)
-
   const legalMove = functions.checkForLegalMove()
-  if (!legalMove) {
-    $('#message').text('illegal move. try again.')
-    return
-  }
 
-  if (!store.game.over) {
+  // if legal move or winning move
+  if (legalMove && !store.game.over) {
+    // get the index and player (even if game is over) to send to API
+    functions.calculateNumMovesMade()
+    functions.getPlayer()
+
     store.numberOfMovesMade++
-  }
 
-  // checks for a win based on the new move
-  if (store.numberOfMovesMade > 4) {
-    functions.checkForWin()
-    functions.checkForTie()
-  }
-
-  store.move = {
-    'game': {
-      'cell': {
-        'index': store.cellIndex,
-        'value': store.player
-      },
-      'over': store.game.over
+    // checks for a win based on the new move
+    if (store.numberOfMovesMade > 4) {
+      functions.checkForWin()
+      functions.checkForTie()
     }
-  }
 
-  api.updateGame()
-    .then(ui.onUpdateGameSuccess)
-    .catch(ui.onUpdateGameFailure)
+    // format the AJAX message's JSON
+    store.move = {
+      'game': {
+        'cell': {
+          'index': store.cellIndex,
+          'value': store.player
+        },
+        'over': store.game.over
+      }
+    }
+
+    // AJAX message is formatted properly in store.move
+    api.updateGame()
+      .then(ui.onUpdateGameSuccess)
+      .catch(ui.onUpdateGameFailure)
+  } else
+  // if illegal move but game isn't over
+  if (!legalMove && !store.game.over) {
+    $('#message').text('illegal move. try again.')
+  } else
+  // if game is already over
+  if (store.game.over) {
+    $('#message').text('game over. click `play` to play again.')
+  }
 }
 
 // event handler listens for when get # of games started button clicked
 const onReadIndexOfGamesStarted = () => {
-  console.log(store)
   api.readIndexOfGamesStarted()
     .then(ui.onReadIndexOfGamesStartedSuccess)
     .catch(ui.onReadIndexOfGamesStartedFailure)
@@ -69,7 +69,6 @@ const onReadIndexOfGamesStarted = () => {
 
 // event handler listens for when get # of games finished button clicked
 const onReadIndexOfGamesFinished = () => {
-  console.log(store)
   api.readIndexOfGamesFinished()
     .then(ui.onReadIndexOfGamesFinishedSuccess)
     .catch(ui.onReadIndexOfGamesFinishedFailure)
