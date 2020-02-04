@@ -5,11 +5,13 @@ Before starting, I made a simple architectural diagram based on Mixu's [Single P
 
 It took about 20 hours of coding to fully understand the entire data flow system for a Node.js app with multiple AJAX requests. I ran through many experiments of when, how, and where to store and retrieve data. I am happy with how I was able to simplify my data and functions into the `store.js` and `functions.js` to embrace very clean modularity and readability of my code. For example, I decided, as an experiment on this project, that I would neither accept any parameters into any functions, neither return any values from any functions. I decided I would only reference local storage in order to experiemnt with this coding strategy. At first, it was challenging to manage state this way, but I'm really happy with how it stretched my mind.
 
+## Finished State
+I believe I completed all the MVP project requirements and there are no bugs. I added two buttons for game statistics, "Games Started" and "Games Finished", which complete two different types of AJAX GET requests. I'm glad I attempted this because in debugging process, I learned there were previously so many more bugs in my program that I doubt I would have ever found. This is what started the major refactoring, commenting, simplification, and reorganization process.
+
+## Future of this App
 I am curious in the future to understand how well my app aligns with Node.js best practices.
 
-I believe that I completed all the MVP project requirements.
-
-## Wireframes
+## Original Wireframes
 ![Sign In Page](https://i.imgur.com/gIcKNJu.jpg)
 ![Signed In](https://i.imgur.com/YlKc2ra.jpg)
 ![Playing Game](https://i.imgur.com/KJ3o6u4.jpg)
