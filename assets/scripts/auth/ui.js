@@ -28,7 +28,7 @@ const onSignInSuccess = function (response) {
   $('#sign-out').show()
   $('#play-button').show()
   $('#get-games-started-button').show()
-  $('#get-games-finished-button').show()
+  // $('#get-games-finished-button').show()
   store.user = response.user
 }
 
