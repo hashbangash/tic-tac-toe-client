@@ -23,5 +23,5 @@ $(() => {
   $('#play-button').on('click', gameEvents.onCreateGame)
   $('#game-board').on('click', gameEvents.onUpdateGame)
   $('#get-games-started-button').on('click', gameEvents.onReadIndexOfGamesStarted)
-  $('#get-games-finished-button').on('click', gameEvents.onReadIndexOfGamesFinished)
+  // $('#get-games-finished-button').on('click', gameEvents.onReadIndexOfGamesFinished)
 })
