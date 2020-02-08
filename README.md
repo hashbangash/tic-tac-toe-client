@@ -1,5 +1,7 @@
 # Tic Tac Toe
 
+#### Please view my In-Class Presentation: [Data Flow](https://docs.google.com/presentation/d/1VrIDJJBE6LSg3xalpIAQN0SlWDuvWrLoi6ZCe36Lr18/edit?usp=sharing)
+
 ## Planning
 Before starting, I made a simple architectural diagram based on Mixu's [Single Page App Book](http://singlepageappbook.com/goal.html). This included Model-View file structure and data flow.
 
@@ -51,7 +53,7 @@ I am happy to use Google Fonts for this project and to understand `.ttf` files, 
 I believe I completed all the MVP project requirements and there are no bugs.
 
 ## Stretch Goals Completed
- I added two buttons for game statistics, "Games Started" and "Games Finished", which complete two different types of AJAX GET requests. I'm glad I attempted this because in debugging process, I learned there were previously so many more bugs in my program that I doubt I would have ever found. This is what started the major refactoring, commenting, simplification, and reorganization process.
+ At first, I added two buttons for game statistics, "Games Started" and "Games Finished", which complete two different types of AJAX GET requests. I'm glad I attempted this stretch goal because in debugging process, I learned there were previously so many more bugs in my program that I doubt I would have ever found. This is what started the major refactoring, commenting, simplification, and reorganization process. I only ended up using "Game Started" in the end.
 
 ## Future of this App
-I am curious in the future to understand how well my app aligns with Node.js best practices.
+I am curious in the future to understand how well my app aligns with Node.js best practices. I've learned that best practices vary on the organization and my style is relatively good practice.
