@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-#### Please view my In-Class Presentation: [Data Flow](https://docs.google.com/presentation/d/1VrIDJJBE6LSg3xalpIAQN0SlWDuvWrLoi6ZCe36Lr18/edit?usp=sharing)
+#### Please view my In-Class Presentation: [Data Flow](https://docs.google.com/presentation/d/1VrIDJJBE6LSg3xalpIAQN0SlWDuvWrLoi6ZCe36Lr18/present?usp=sharing)
 
 ## Planning
 Before starting, I made a simple architectural diagram based on Mixu's [Single Page App Book](http://singlepageappbook.com/goal.html). This included Model-View file structure and data flow.
