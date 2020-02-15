@@ -52,8 +52,6 @@ More info about this GNU GPLv3 license: Copyright © 2007 [Free Software Foundat
 ## Tech & Dependencies
 I use Node.js for this client because it's a useful JS runtime and handles running code on the browser for me. It makes all the parts of web development that I don't understand yet work. A really cool aspect of it is the [event loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ), which means that I/O doesn't get blocked even though the environment is single-threaded. This is why in my code I used callback functions with my event handlers.
 
-Node.js itself has so many different files in the `node_modules` folder and I do not know what each of these do. A couple of these, `mem` and `js-yaml` have vulnerabilities and bugs in the versions I'm using. Go ahead, break my app! There is no secure information in there, I think. Learning how to build an app where I can update to current versions of dependencies is a huge priority of mine going forward.
-
 Node.js itself has an MIT license. The MIT license is compatible with my project because it can be re-licensed under other licenses. The MIT license is compatible with many copyleft licenses, such as the GNU General Public License (GPL). It is open-source and free, in the sense of 'freedom'.
 
 ```json
@@ -78,9 +76,11 @@ Since this is my first Node.js app, I'm listing out what each dependency does fo
 ### Vulnerabilities
 GitHub identifies known vulnerabilities in my dependencies.
 
-I broke my dev environment the first day patching a known vulnerability in `webpack`. That's when I learned I just had to accept this vuln and focus on the practice of learning how to build a JS client. Webpack is only used in my dev process and isn't a part of production, so I'm not worried about the vulnerability, for now.
+I broke my dev environment the first day patching a known vulnerability in `webpack`. That's when I learned I just had to accept this vuln and focus on the practice of learning how to build a JS client. Webpack is only used in my dev process and isn't a part of production, so I'm not worried about this vulnerability, for now.
+
+Node.js itself has so many different files in the `node_modules` folder and I do not know what each of these do. A couple of these, `mem` and `js-yaml` have vulnerabilities and bugs in the versions I'm using. Go ahead, break my app! There is no secure information in there, I think. Learning how to build an app where I can update to current versions of dependencies is a huge priority of mine going forward.
 
 ## Future of this App
 I am curious in the future to understand how well my app aligns with Node.js best practices. I've learned that best practices vary on the organization and my style is relatively good practice.
 
-Like I already mentioned, learning how to build an app where I can continually update to current versions of dependencies is a huge priority of mine going forward. This will help keep my apps secure.
+Like I just mentioned, learning how to build an app where I can continually update to current versions of dependencies is a huge priority of mine going forward. This will help keep my apps secure.
