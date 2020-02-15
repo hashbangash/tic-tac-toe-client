@@ -36,7 +36,7 @@ At first, I added two buttons for game statistics, "Games Started" and "Games Fi
 
 
 ## License
-My project has a [GNU General Public License, version 3](https://www.gnu.org/licenses/gpl-3.0.en.html). The type is [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/), meaning:
+My project has a [GNU General Public License, version 3](https://www.gnu.org/licenses/gpl-3.0.txt). I is GPL-3.0-or-later. The type is [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/), meaning:
 
 You are free to:
 * Share — copy and redistribute the material in any medium or format
