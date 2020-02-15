@@ -15,8 +15,8 @@ Throughout the process, I drew almost a dozen different diagrams: file system di
 
 It took about 20 hours of coding to fully understand the entire data flow system for a Node.js app with multiple AJAX requests. I ran through many experiments of when, how, and where to store and retrieve data. I am happy with how I was able to simplify my data and functions into the `store.js` and `functions.js` to embrace very clean modularity and readability of my code. **For example, I decided, as an experiment on this project, that I would neither accept any parameters into any functions, neither return any values from any functions.** I decided I would only reference local storage in order to experiemnt with this coding strategy. At first, it was challenging to manage state this way, but I'm really happy with how it stretched my mind.
 
-I was blocked at two points throughout the process:
-1. On the first day, I updated the version of `webpack` to solve a security issue which broke my local testing environment with `grunt`. It was fun to break and then fix my Node app, which required manually reverting the `webpack` version number, deleting all my node modules (`rm -rf` YAY) and reinstalling `npm` to create all new mode modules.
+#### Blocks and how I solved them
+1. On the first day, I updated the version of `webpack` to solve a security issue which broke my local testing environment with `grunt`. It was fun to break and then fix my Node app, which required manually reverting the `webpack` version number, deleting all my node modules (`rm -rf` YAY) and reinstalling `npm` to create all new mode modules. I'm glad to learn `package.json` and `package-lock.json` better.
 2. Another time I was blocked because I hadn't carefully planned out my data flow and storage and had lost the big picture view of my app, but I learned to post a Github Issue and follow the trail to a careful reconstruction of my codebase.
 
 #### Code Clarity
@@ -31,7 +31,7 @@ I am happy to use Google Fonts for this project and to understand `.ttf` files, 
 
 I completed all the MVP project requirements and there are no evident bugs.
 
-### Stretch Goals
+#### Stretch Goals
 At first, I added two buttons for game statistics, "Games Started" and "Games Finished", which complete two different types of AJAX GET requests. I'm glad I attempted this stretch goal because in debugging process, I learned there were previously so many more bugs in my program that I doubt I would have ever found. This is what started the major refactoring, commenting, simplification, and reorganization process. I only ended up using "Game Started" in the end.
 
 
@@ -73,7 +73,7 @@ Since this is my first Node.js app, I'm listing out what each dependency does fo
 
 **popper.js**: Honestly, I'm not sure why this is in my dependencies. I'm not sure I'm even utilizing it, but doing this research helps me understand dependency decisions going forward as a developer. By the way, popper has zero dependencies and helps with positioning of pop-up elements. It has an MIT license.
 
-#### Vulnerabilities
+### Vulnerabilities
 GitHub identifies known vulnerabilities in my dependencies.
 
 I broke my dev environment the first day patching a known vulnerability in `webpack`. That's when I learned I just had to accept this vuln and focus on the practice of learning how to build a JS client. Webpack is only used in my dev process and isn't a part of production, so I'm not worried about the vulnerability, for now.
