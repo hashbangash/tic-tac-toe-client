@@ -15,7 +15,7 @@ Throughout the process, I drew almost a dozen different diagrams: file system di
 
 It took about 20 hours of coding to fully understand the entire data flow system for a Node.js app with multiple AJAX requests. I ran through many experiments of when, how, and where to store and retrieve data. I am happy with how I was able to simplify my data and functions into the `store.js` and `functions.js` to embrace very clean modularity and readability of my code. **For example, I decided, as an experiment on this project, that I would neither accept any parameters into any functions, neither return any values from any functions.** I decided I would only reference local storage in order to experiemnt with this coding strategy. At first, it was challenging to manage state this way, but I'm really happy with how it stretched my mind.
 
-I was blocked at two points throughout the process.
+I was blocked at two points throughout the process:
 1. On the first day, I updated the version of `webpack` to solve a security issue which broke my local testing environment with `grunt`. It was fun to break and then fix my Node app, which required manually reverting the `webpack` version number, deleting all my node modules (`rm -rf` YAY) and reinstalling `npm` to create all new mode modules.
 2. Another time I was blocked because I hadn't carefully planned out my data flow and storage and had lost the big picture view of my app, but I learned to post a Github Issue and follow the trail to a careful reconstruction of my codebase.
 
@@ -47,9 +47,11 @@ Under the following terms:
 * NonCommercial — You may not use the material for commercial purposes.
 * ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
-More info about this GNU GPLv3 license: Copyright © 2007 [Free Software Foundation, Inc.](https://fsf.org/).
+More info about this GNU GPLv3 license: Copyright © 2007 [Free Software Foundation, Inc.](https://fsf.org/)
 
-## Dependencies
+## Tech & Dependencies
+I use Node.js for this client because it's a useful JS runtime and handles running code on the browser for me. It makes all the parts of web development that I don't understand yet work. A really cool aspect of it is the [event loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ), which means that I/O doesn't get blocked even though the environment is single-threaded. This is why in my code I used callback functions with my event handlers.
+
 Node.js itself has an MIT license. The MIT license is compatible with my project because it can be re-licensed under other licenses. The MIT license is compatible with many copyleft licenses, such as the GNU General Public License (GPL). It is open-source and free, in the sense of 'freedom'.
 
 ```json
@@ -61,11 +63,11 @@ Node.js itself has an MIT license. The MIT license is compatible with my project
 }
 ```
 
-Since this is my first Node.js app, I'm listing out what each dependency does for my own learning. The `devDependencies` in `package.json` are tools just used for development, not distribution.
+Since this is my first Node.js app, I'm listing out what each dependency does for my own learning. The `devDependencies` in `package.json` are tools just used for development, not production.
 
-**Babel Polyfill**: Transpiles ES6+ code to ES5. A polyfill provides modern functionality for older browsers. Babel is a JS compiler that is now broken into separate small packages. I am just using the polyfill package. Babel has an MIT license.
+**babel polyfill**: Transpiles ES6+ code to ES5. A polyfill provides modern functionality for older browsers. Babel is a JS compiler that is now broken into separate small packages. I am just using the polyfill package. Babel has an MIT license.
 
-**Bootstrap**: Helps with writing CSS so I can use Sass variables and nest CSS styles. I used the grid system for my tic tac toe board. It also has an MIT license.
+**bootstrap**: Helps with writing CSS so I can use Sass variables and nest CSS styles. I used the grid system for my tic tac toe board. It also has an MIT license.
 
 **jQuery**: Incredibly valuable JS library that simplifies creating event handlers. Instead of writing complex JS commands to select HTML elements and apply events or styling to them, I can write simple jQuery commands. jQuery has an [MIT license](https://jquery.org/license/). "You are free to use the Project in any other project (even commercial projects) as long as the copyright header is left intact."
 
@@ -75,9 +77,6 @@ Since this is my first Node.js app, I'm listing out what each dependency does fo
 GitHub identifies known vulnerabilities in my dependencies.
 
 I broke my dev environment the first day patching a known vulnerability in `webpack`. That's when I learned I just had to accept this vuln and focus on the practice of learning how to build a JS client. Webpack is only used in my dev process and isn't a part of production, so I'm not worried about the vulnerability, for now.
-
-
-
 
 ## Future of this App
 I am curious in the future to understand how well my app aligns with Node.js best practices. I've learned that best practices vary on the organization and my style is relatively good practice.
