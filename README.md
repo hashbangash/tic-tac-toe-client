@@ -19,19 +19,19 @@ I was blocked at two points throughout the process:
 1. On the first day, I updated the version of `webpack` to solve a security issue which broke my local testing environment with `grunt`. It was fun to break and then fix my Node app, which required manually reverting the `webpack` version number, deleting all my node modules (`rm -rf` YAY) and reinstalling `npm` to create all new mode modules.
 2. Another time I was blocked because I hadn't carefully planned out my data flow and storage and had lost the big picture view of my app, but I learned to post a Github Issue and follow the trail to a careful reconstruction of my codebase.
 
-## Code Clarity
+#### Code Clarity
 
 I am proud of my naming, spacing, and commenting and gave consciousness to every line of code in the project.
 
-## Creativity
+#### Creativity
 
 I am happy to use Google Fonts for this project and to understand `.ttf` files, where they belong, and how to link to them in Bootstrap. I also practiced proper link attribution using `a` tags of some freely-licensed images that I added in the file structure. While I didn't end up using the images and opted for an 8-bit era style, I was happy to learn the process.
 
-## Technical Requirements
+#### Technical Requirements
 
 I completed all the MVP project requirements and there are no evident bugs.
 
-## Stretch Goals
+### Stretch Goals
 At first, I added two buttons for game statistics, "Games Started" and "Games Finished", which complete two different types of AJAX GET requests. I'm glad I attempted this stretch goal because in debugging process, I learned there were previously so many more bugs in my program that I doubt I would have ever found. This is what started the major refactoring, commenting, simplification, and reorganization process. I only ended up using "Game Started" in the end.
 
 
